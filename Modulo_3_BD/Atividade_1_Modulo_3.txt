@@ -1,0 +1,27 @@
+Seleção de dados:
+
+SELECT * FROM Transacoes;
+==============================================
+Renomeando colunas:
+
+SELECT ID_Transacao AS ID, Data AS DataTransacao, Valor AS ValorTransacao FROM Transacoes;
+==============================================
+Filtragem com a cláusula WHERE:
+
+SELECT * FROM Transacoes WHERE Valor > 100.00;
+==============================================
+Ordenação com a cláusula ORDER BY:
+
+SELECT * FROM Transacoes ORDER BY Valor DESC;
+==============================================
+Agregação com funções SQL:
+
+SELECT AVG(Valor) AS MediaValor, MAX(Valor) AS ValorMaximo, MIN(Valor) AS ValorMinimo, COUNT(*) AS TotalTransacoes FROM Transacoes;
+==============================================
+Agrupamento com a cláusula GROUP BY:
+
+SELECT Produto, AVG(Valor) AS MediaValorPorProduto FROM Transacoes GROUP BY Produto;
+==============================================
+Consulta combinada:
+
+SELECT CategoriaProduto, COUNT(*) AS TotalProdutos, SUM(Valor) AS ValorTotalVendas, AVG(Valor) AS MediaValorPorTransacao FROM Produtos JOIN Transacoes ON Produtos.ProdutoID = Transacoes.ProdutoID GROUP BY CategoriaProduto;
