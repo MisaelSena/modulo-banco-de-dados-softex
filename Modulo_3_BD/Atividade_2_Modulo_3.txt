@@ -1,0 +1,51 @@
+Inserção de dados:
+
+-- Autores
+INSERT INTO Autores (AutorID, Nome, Nacionalidade)
+VALUES
+    (1, 'Autor1', 'Nacionalidade1'),
+    (2, 'Autor2', 'Nacionalidade2'),
+    (3, 'Autor3', 'Nacionalidade3');
+
+-- Livros
+INSERT INTO Livros (LivroID, Titulo, AnoPublicacao, AutorID)
+VALUES
+    (1, 'Livro1', 2022, 1),
+    (2, 'Livro2', 2020, 1),
+    (3, 'Livro3', 2021, 2),
+    (4, 'Livro4', 2019, 2),
+    (5, 'Livro5', 2023, 3);
+============================================================================
+Consulta simples:
+-- Listar todos os autores e seus livros associados
+SELECT Autores.*, Livros.*
+FROM Autores
+JOIN Livros ON Autores.AutorID = Livros.AutorID;
+============================================================================
+Consulta com INNER JOIN:
+-- Listar detalhes dos livros e seus autores correspondentes usando INNER JOIN
+SELECT Autores.Nome AS NomeAutor, Livros.Titulo AS TituloLivro
+FROM Autores
+JOIN Livros ON Autores.AutorID = Livros.AutorID;
+============================================================================
+Consulta com LEFT JOIN:
+-- Exibir todos os autores, independentemente de terem livros associados. Inclui informações dos livros, se disponíveis.
+SELECT Autores.Nome AS NomeAutor, Livros.Titulo AS TituloLivro
+FROM Autores
+LEFT JOIN Livros ON Autores.AutorID = Livros.AutorID;
+============================================================================
+Consulta com filtro por nacionalidade:
+-- Listar autores e seus livros, restrito a uma nacionalidade específica (ex: 'Nacionalidade1')
+SELECT Autores.Nome AS NomeAutor, Livros.Titulo AS TituloLivro
+FROM Autores
+JOIN Livros ON Autores.AutorID = Livros.AutorID
+WHERE Autores.Nacionalidade = 'Nacionalidade1';
+============================================================================
+Consulta agregada:
+-- Contar quantos livros cada autor escreveu
+SELECT Autores.Nome AS NomeAutor, COUNT(Livros.LivroID) AS QuantidadeLivros
+FROM Autores
+LEFT JOIN Livros ON Autores.AutorID = Livros.AutorID
+GROUP BY Autores.AutorID;
+
+
